@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 350" width="400" height="350">
+  <!-- Belt straps -->
+  <rect x="75" y="40" width="250" height="30" rx="15" fill="#536dfe" opacity="0.5"/>
+  <rect x="85" y="85" width="230" height="30" rx="15" fill="#536dfe" opacity="0.7"/>
+  <rect x="95" y="130" width="210" height="30" rx="15" fill="#536dfe" opacity="0.85"/>
+  <!-- Black belt -->
+  <rect x="65" y="175" width="270" height="28" rx="14" fill="#536dfe"/>
+  <!-- Belt knot -->
+  <path d="M180,203 Q165,230 145,255 Q138,265 152,260 L192,238 Z" fill="#536dfe"/>
+  <path d="M220,203 Q235,230 255,255 Q262,265 248,260 L208,238 Z" fill="#536dfe"/>
+  <rect x="188" y="203" width="24" height="35" rx="5" fill="#536dfe"/>
+  <!-- Text -->
+  <text x="200" y="320" font-family="Arial, sans-serif" font-size="52" font-weight="bold" fill="#536dfe" text-anchor="middle">Straplio</text>
+</svg>
