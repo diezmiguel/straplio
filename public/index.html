@@ -1,369 +1,352 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Straplio — Student Management for Martial Arts Schools</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Straplio - Em Breve</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
   <style>
-    *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
-    :root{--primary:#536dfe;--primary-dark:#3d5afe;--text:#1a1a2e;--muted:#64748b;--light:#f8fafc;--card:#fff}
-    body{font-family:'Inter',sans-serif;color:var(--text);background:#fff;overflow-x:hidden}
-
-    section{position:relative;z-index:1}
-
-    /* Nav */
-    nav{position:fixed;top:0;width:100%;padding:16px 40px;display:flex;justify-content:space-between;align-items:center;z-index:100;backdrop-filter:blur(20px);background:rgba(255,255,255,.85);border-bottom:1px solid rgba(0,0,0,.06)}
-    nav .logo img{height:70px;position:relative;top:10px;filter:drop-shadow(0 4px 12px rgba(83,109,254,.3))}
-    nav .nav-right{display:flex;align-items:center;gap:1.5rem}
-    nav .nav-links{display:flex;gap:1.5rem}
-    nav a{color:var(--primary);text-decoration:none;font-size:.9rem;font-weight:600;transition:opacity .2s}
-    nav a:hover{opacity:.7}
-    .lang-toggle{display:flex;align-items:center;gap:6px;background:rgba(83,109,254,.08);border:1px solid rgba(83,109,254,.2);border-radius:8px;padding:6px 12px;cursor:pointer;font-size:.85rem;font-weight:600;color:var(--primary);transition:all .2s}
-    .lang-toggle:hover{background:rgba(83,109,254,.15)}
-    .lang-toggle .active{opacity:1}
-    .lang-toggle .inactive{opacity:.4}
-
-    /* Hero */
-    .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 20px 80px;background:linear-gradient(180deg,#eef2ff 0%,#fff 100%)}
-    .hero .badge{display:inline-block;padding:8px 16px;border-radius:50px;background:rgba(83,109,254,.1);border:1px solid rgba(83,109,254,.2);font-size:.85rem;color:var(--primary);margin-bottom:2rem;animation:fadeUp .8s ease}
-    .hero h1{font-size:clamp(2.5rem,7vw,5rem);font-weight:800;line-height:1.1;margin-bottom:1.5rem;color:var(--text);animation:fadeUp .8s ease .1s both}
-    .hero h1 .gradient{color:var(--primary)}
-    .hero p{font-size:1.25rem;color:var(--muted);max-width:600px;margin:0 auto 2.5rem;animation:fadeUp .8s ease .2s both}
-    .hero .cta-group{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;animation:fadeUp .8s ease .3s both}
-    .btn-primary{padding:16px 36px;background:var(--primary);color:#fff;text-decoration:none;border-radius:12px;font-weight:600;font-size:1rem;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 20px rgba(83,109,254,.3)}
-    .btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(83,109,254,.4)}
-    .btn-secondary{padding:16px 36px;background:#fff;border:2px solid rgba(83,109,254,.2);color:var(--primary);text-decoration:none;border-radius:12px;font-weight:600;font-size:1rem;transition:all .2s}
-    .btn-secondary:hover{border-color:var(--primary);transform:translateY(-2px)}
-
-    /* Stats */
-    .stats{display:flex;justify-content:center;gap:60px;padding:40px 20px 80px;animation:fadeUp .8s ease .4s both}
-    .stat{text-align:center}
-    .stat .number{font-size:2.5rem;font-weight:800;color:var(--primary)}
-    .stat .label{font-size:.85rem;color:var(--muted);margin-top:4px}
-
-    /* Features */
-    .features{padding:80px 20px;max-width:1100px;margin:0 auto}
-    .features h2{text-align:center;font-size:2.5rem;font-weight:800;margin-bottom:1rem;color:var(--text)}
-    .features .subtitle{text-align:center;color:var(--muted);margin-bottom:4rem;font-size:1.1rem}
-    .feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
-    .feature-card{padding:36px;border-radius:20px;background:var(--card);border:1px solid rgba(0,0,0,.06);transition:all .3s;position:relative;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.04)}
-    .feature-card:hover{transform:translateY(-4px);border-color:rgba(83,109,254,.3);box-shadow:0 12px 40px rgba(83,109,254,.12)}
-    .feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--primary);opacity:0;transition:opacity .3s}
-    .feature-card:hover::before{opacity:1}
-    .feature-card .icon{font-size:2.5rem;margin-bottom:1rem}
-    .feature-card h3{font-size:1.2rem;margin-bottom:.5rem;color:var(--text)}
-    .feature-card p{color:var(--muted);font-size:.95rem;line-height:1.6}
-
-    /* Screenshots */
-    .screenshots{padding:80px 20px;background:var(--light)}
-    .screenshots h2{text-align:center;font-size:2.5rem;font-weight:800;margin-bottom:1rem;color:var(--text)}
-    .screenshots .subtitle{text-align:center;color:var(--muted);margin-bottom:3rem;font-size:1.1rem}
-    .screenshot-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(480px,1fr));gap:24px}
-    .screenshot-card{border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(83,109,254,.1);border:1px solid rgba(0,0,0,.06);transition:all .3s}
-    .screenshot-card:hover{transform:translateY(-4px);box-shadow:0 16px 50px rgba(83,109,254,.18)}
-    .screenshot-card img{width:100%;display:block}
-    .screenshot-card .caption{padding:16px 20px;background:#fff;font-weight:600;color:var(--text);font-size:.95rem}
-
-    /* Contact */
-    .contact{padding:100px 20px;max-width:600px;margin:0 auto}
-    .contact h2{text-align:center;font-size:2.5rem;font-weight:800;margin-bottom:.5rem;color:var(--text)}
-    .contact .subtitle{text-align:center;color:var(--muted);margin-bottom:3rem}
-    .contact form{display:flex;flex-direction:column;gap:1rem}
-    .contact input,.contact textarea{padding:16px 20px;border:1px solid #e2e8f0;border-radius:12px;background:#fff;color:var(--text);font-size:1rem;font-family:inherit;transition:border-color .2s,box-shadow .2s}
-    .contact input::placeholder,.contact textarea::placeholder{color:#94a3b8}
-    .contact input:focus,.contact textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(83,109,254,.1)}
-    .contact textarea{min-height:140px;resize:vertical}
-    .contact button{padding:16px;background:var(--primary);color:#fff;border:none;border-radius:12px;font-size:1rem;font-weight:600;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 20px rgba(83,109,254,.3);display:flex;align-items:center;justify-content:center;gap:10px}
-    .contact button:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(83,109,254,.4)}
-    .contact button:disabled{opacity:.7;cursor:not-allowed;transform:none}
-    .spinner{width:20px;height:20px;border:3px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite;display:none}
-    .contact button.loading .spinner{display:block}
-    @keyframes spin{to{transform:rotate(360deg)}}
-    .msg{text-align:center;margin-top:1rem;font-weight:500;border-radius:8px;padding:12px}
-    .msg.success{color:#16a34a;background:rgba(22,163,74,.08)}
-    .msg.error{color:#dc2626;background:rgba(220,38,38,.08)}
-
-    /* Footer */
-    footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.85rem;border-top:1px solid rgba(0,0,0,.06);background:var(--light)}
-
-    /* Animations */
-    @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-    .reveal{opacity:0;transform:translateY(30px);transition:all .6s ease}
-    .reveal.visible{opacity:1;transform:translateY(0)}
-
-    @media(max-width:768px){
-      .stats{gap:30px;flex-wrap:wrap}
-      .stat .number{font-size:2rem}
-      nav{padding:16px 20px}
-      .screenshot-grid{grid-template-columns:1fr}
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
     }
+
+    body{
+      font-family:'Montserrat',sans-serif;
+      background:#090014;
+      overflow-x:hidden;
+      color:white;
+      min-height:100vh;
+    }
+
+    .bg{
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(rgba(10,0,20,.85),rgba(10,0,20,.92)),
+        url('https://images.unsplash.com/photo-1517438322307-e67111335449?q=80&w=1974&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      filter:brightness(.7);
+    }
+
+    .glow{
+      position:absolute;
+      width:500px;
+      height:500px;
+      border-radius:50%;
+      background:#7a2cff;
+      filter:blur(150px);
+      opacity:.25;
+      animation:pulse 5s infinite alternate;
+    }
+
+    .glow.one{
+      top:-120px;
+      left:-120px;
+    }
+
+    .glow.two{
+      bottom:-180px;
+      right:-100px;
+    }
+
+    @keyframes pulse{
+      from{
+        transform:scale(1);
+      }
+      to{
+        transform:scale(1.2);
+      }
+    }
+
+    .container{
+      position:relative;
+      z-index:2;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      text-align:center;
+      padding:40px;
+      min-height:100vh;
+    }
+
+    .logo{
+      width:110px;
+      margin-bottom:25px;
+      filter:drop-shadow(0 0 15px #8b3dff);
+    }
+
+    .tag{
+      color:#b28cff;
+      font-size:18px;
+      font-weight:600;
+      letter-spacing:4px;
+      margin-bottom:20px;
+      text-transform:uppercase;
+    }
+
+    h1{
+      font-size:76px;
+      line-height:1;
+      font-weight:900;
+      margin-bottom:25px;
+      text-transform:uppercase;
+      max-width:1000px;
+    }
+
+    h1 span{
+      color:#9d4dff;
+      text-shadow:0 0 25px rgba(157,77,255,.7);
+    }
+
+    .subtitle{
+      font-size:22px;
+      max-width:850px;
+      color:#d5d0e4;
+      line-height:1.6;
+      margin-bottom:45px;
+    }
+
+    .countdown{
+      display:flex;
+      gap:25px;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin-bottom:50px;
+    }
+
+    .box{
+      width:140px;
+      height:140px;
+      border-radius:24px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.12);
+      backdrop-filter:blur(15px);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 0 25px rgba(122,44,255,.2);
+    }
+
+    .box h2{
+      font-size:52px;
+      color:#b88cff;
+      font-weight:800;
+    }
+
+    .box p{
+      margin-top:10px;
+      font-size:14px;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      color:#ddd;
+    }
+
+    .cta{
+      display:inline-block;
+      padding:18px 40px;
+      border-radius:50px;
+      background:linear-gradient(90deg,#7a2cff,#a94dff);
+      color:white;
+      text-decoration:none;
+      font-weight:700;
+      font-size:18px;
+      box-shadow:0 0 30px rgba(122,44,255,.5);
+      transition:.3s ease;
+    }
+
+    .cta:hover{
+      transform:translateY(-4px) scale(1.02);
+      box-shadow:0 0 40px rgba(122,44,255,.8);
+    }
+
+    .footer{
+      position:absolute;
+      bottom:25px;
+      font-size:14px;
+      color:#9d9d9d;
+      letter-spacing:1px;
+    }
+
+    @media(max-width:900px){
+
+      h1{
+        font-size:48px;
+      }
+
+      .subtitle{
+        font-size:18px;
+      }
+
+      .box{
+        width:110px;
+        height:110px;
+      }
+
+      .box h2{
+        font-size:38px;
+      }
+    }
+
+    .contact-form{width:100%;max-width:500px;margin-top:50px;display:flex;flex-direction:column;gap:1rem}
+    .contact-form input,.contact-form textarea{padding:16px 20px;border:1px solid rgba(255,255,255,.12);border-radius:12px;background:rgba(255,255,255,.05);backdrop-filter:blur(10px);color:#fff;font-size:1rem;font-family:inherit}
+    .contact-form input::placeholder,.contact-form textarea::placeholder{color:rgba(255,255,255,.4)}
+    .contact-form input:focus,.contact-form textarea:focus{outline:none;border-color:#9d4dff;box-shadow:0 0 20px rgba(157,77,255,.2)}
+    .contact-form textarea{min-height:120px;resize:vertical}
+    .contact-form button{padding:16px;background:linear-gradient(90deg,#7a2cff,#a94dff);color:#fff;border:none;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;box-shadow:0 0 30px rgba(122,44,255,.4);transition:.3s;display:flex;align-items:center;justify-content:center;gap:10px}
+    .contact-form button:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(122,44,255,.7)}
+    .contact-form button:disabled{opacity:.7;cursor:not-allowed;transform:none}
+    .contact-form .spinner{width:20px;height:20px;border:3px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite;display:none}
+    .contact-form button.loading .spinner{display:block}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .contact-form .msg{text-align:center;font-weight:500;border-radius:8px;padding:12px}
+    .contact-form .msg.success{color:#4ade80;background:rgba(74,222,128,.1)}
+    .contact-form .msg.error{color:#f87171;background:rgba(248,113,113,.1)}
+
   </style>
 </head>
 <body>
-  <nav>
-    <div class="logo"><img src="/straplio-logo.svg" alt="Straplio"></div>
-    <div class="nav-right">
-      <div class="nav-links">
-        <a href="#features" data-i18n="nav_features">Features</a>
-        <a href="#screenshots" data-i18n="nav_screenshots">Screenshots</a>
-        <a href="#contact" data-i18n="nav_contact">Contact</a>
-      </div>
-      <div class="lang-toggle" id="langToggle" aria-label="Toggle language">
-        <span id="flagEn" class="active">🇺🇸 EN</span>
-        <span>|</span>
-        <span id="flagPt" class="inactive">🇧🇷 PT</span>
-      </div>
-      <a href="#contact" data-i18n="nav_contact">Contact</a>
+
+<div class="bg"></div>
+
+<div class="glow one"></div>
+<div class="glow two"></div>
+
+<div class="container">
+
+  <img 
+    class="logo"
+    src="straplio-logo.svg" 
+    alt="Straplio Logo"
+  >
+
+  <div class="tag">
+    COMING SOON
+  </div>
+
+  <h1>
+    A REVOLUÇÃO DA GESTÃO<br>
+    DE DOJOS <span>ESTÁ CHEGANDO.</span>
+  </h1>
+
+  <p class="subtitle">
+    Organize alunos, acompanhe faixas, controle presença,
+    monitore progresso e transforme sua escola de artes marciais
+    com uma plataforma moderna criada para instrutores.
+  </p>
+
+  <div class="countdown">
+
+    <div class="box">
+      <h2 id="days">00</h2>
+      <p>Dias</p>
     </div>
-  </nav>
 
-  <section class="hero">
-    <div class="badge" data-i18n="badge">🥋 Built for Martial Arts Schools</div>
-    <h1 data-i18n="hero_title">Manage Your Dojo<br><span class="gradient">Like a Pro</span></h1>
-    <p data-i18n="hero_subtitle">The all-in-one CRM to manage students, classes, belt progressions, and payments for your Karate &amp; Jiu-Jitsu academy.</p>
-    <div class="cta-group">
-      <a href="#contact" class="btn-primary" data-i18n="cta_trial">Start Free Trial</a>
-      <a href="#features" class="btn-secondary" data-i18n="cta_features">See Features</a>
+    <div class="box">
+      <h2 id="hours">00</h2>
+      <p>Horas</p>
     </div>
-  </section>
 
-  <section class="stats">
-    <div class="stat"><div class="number">500+</div><div class="label" data-i18n="stat_dojos">Dojos Worldwide</div></div>
-    <div class="stat"><div class="number">50K+</div><div class="label" data-i18n="stat_students">Students Managed</div></div>
-    <div class="stat"><div class="number">99.9%</div><div class="label" data-i18n="stat_uptime">Uptime</div></div>
-  </section>
-
-  <section class="features" id="features">
-    <h2 class="reveal" data-i18n="features_title">Everything You Need</h2>
-    <p class="subtitle reveal" data-i18n="features_subtitle">Powerful tools designed specifically for martial arts academies</p>
-    <div class="feature-grid">
-      <div class="feature-card reveal">
-        <div class="icon">🥋</div>
-        <h3 data-i18n="f1_title">Student Profiles</h3>
-        <p data-i18n="f1_desc">Complete student records with belt history, attendance tracking, and progress notes all in one place.</p>
-      </div>
-      <div class="feature-card reveal">
-        <div class="icon">📅</div>
-        <h3 data-i18n="f2_title">Smart Scheduling</h3>
-        <p data-i18n="f2_desc">Drag-and-drop class scheduling with automatic conflict detection and instructor assignment.</p>
-      </div>
-      <div class="feature-card reveal">
-        <div class="icon">🏆</div>
-        <h3 data-i18n="f3_title">Belt Progression</h3>
-        <p data-i18n="f3_desc">Track grading requirements, schedule exams, and celebrate promotions with your students.</p>
-      </div>
-      <div class="feature-card reveal">
-        <div class="icon">📱</div>
-        <h3 data-i18n="f4_title">Mobile Ready</h3>
-        <p data-i18n="f4_desc">Access everything from any device. Students can check schedules and make payments on the go.</p>
-      </div>
-      <div class="feature-card reveal">
-        <div class="icon">📊</div>
-        <h3 data-i18n="f5_title">Reporting</h3>
-        <p data-i18n="f5_desc">Generate detailed reports on attendance, revenue, and student progress to make data-driven decisions.</p>
-      </div>
-      <div class="feature-card reveal">
-        <div class="icon">🎯</div>
-        <h3 data-i18n="f6_title">Prospects</h3>
-        <p data-i18n="f6_desc">Track leads from first inquiry to enrollment. Never lose a potential student again.</p>
-      </div>
+    <div class="box">
+      <h2 id="minutes">00</h2>
+      <p>Minutos</p>
     </div>
-  </section>
 
-  <section class="screenshots" id="screenshots">
-    <h2 class="reveal" data-i18n="screenshots_title">See It in Action</h2>
-    <p class="subtitle reveal" data-i18n="screenshots_subtitle">A glimpse of what you get with Straplio</p>
-    <div class="screenshot-grid">
-      <div class="screenshot-card reveal">
-        <img src="/screenshot-dashboard.png" alt="Straplio Dashboard">
-        <div class="caption" data-i18n="ss_dashboard">Dashboard — Overview at a glance</div>
-      </div>
-      <div class="screenshot-card reveal">
-        <img src="/screenshot-schedule.png" alt="Straplio Calendar">
-        <div class="caption" data-i18n="ss_calendar">Calendar — Schedule &amp; manage classes</div>
-      </div>
-      <div class="screenshot-card reveal">
-        <img src="/screenshot-students.png" alt="Straplio Class Rosters">
-        <div class="caption" data-i18n="ss_rosters">Class Rosters — Track active classes</div>
-      </div>
-      <div class="screenshot-card reveal">
-        <img src="/screenshot-prospects.png" alt="Straplio Prospects">
-        <div class="caption" data-i18n="ss_prospects">Prospects — Convert leads to students</div>
-      </div>
-      <div class="screenshot-card reveal">
-        <img src="/screenshot-classboard.png" alt="Straplio Class Board">
-        <div class="caption" data-i18n="ss_classboard">Class Board — Tile view of student progress</div>
-      </div>
-      <div class="screenshot-card reveal">
-        <img src="/screenshot-belt.png" alt="Straplio Belt Setup">
-        <div class="caption" data-i18n="ss_belt">Belt Setup — Tips &amp; progression management</div>
-      </div>
-
+    <div class="box">
+      <h2 id="seconds">00</h2>
+      <p>Segundos</p>
     </div>
-  </section>
 
-  <section class="contact" id="contact">
-    <h2 class="reveal" data-i18n="contact_title">Get Started Today</h2>
-    <p class="subtitle reveal" data-i18n="contact_subtitle">Drop us a message and we'll get you set up in minutes</p>
-    <form id="contactForm" class="reveal">
-      <input type="text" name="name" data-i18n-placeholder="ph_name" placeholder="Your Name" required aria-label="Your Name">
-      <input type="text" name="website" style="position:absolute;left:-9999px;opacity:0" tabindex="-1" autocomplete="off">
-      <input type="email" name="email" data-i18n-placeholder="ph_email" placeholder="Your Email" required aria-label="Your Email">
-      <textarea name="message" data-i18n-placeholder="ph_message" placeholder="Tell us about your dojo..." required aria-label="Message"></textarea>
-      <button type="submit"><span data-i18n="btn_send">Send Message →</span><span class="spinner"></span></button>
-      <div class="msg" id="formMsg" aria-live="polite"></div>
-    </form>
-  </section>
+  </div>
 
-  <footer data-i18n="footer">&copy; 2026 Straplio. All rights reserved.</footer>
+  <a href="https://straplio.com" class="cta">
+    straplio.com
+  </a>
 
-  <script>
-    const i18n = {
-      en: {
-        nav_contact: 'Contact',
-        nav_features: 'Features',
-        nav_screenshots: 'Screenshots',
-        badge: '🥋 Built for Martial Arts Schools',
-        hero_title: 'Manage Your Dojo<br><span class="gradient">Like a Pro</span>',
-        hero_subtitle: 'The all-in-one CRM to manage students, classes, belt progressions, and payments for your Karate & Jiu-Jitsu academy.',
-        cta_trial: 'Start Free Trial',
-        cta_features: 'See Features',
-        stat_dojos: 'Dojos Worldwide',
-        stat_students: 'Students Managed',
-        stat_uptime: 'Uptime',
-        features_title: 'Everything You Need',
-        features_subtitle: 'Powerful tools designed specifically for martial arts academies',
-        f1_title: 'Student Profiles', f1_desc: 'Complete student records with belt history, attendance tracking, and progress notes all in one place.',
-        f2_title: 'Smart Scheduling', f2_desc: 'Drag-and-drop class scheduling with automatic conflict detection and instructor assignment.',
-        f3_title: 'Belt Progression', f3_desc: 'Track grading requirements, schedule exams, and celebrate promotions with your students.',
-        f4_title: 'Mobile Ready', f4_desc: 'Access everything from any device. Students can check schedules and make payments on the go.',
-        f5_title: 'Reporting', f5_desc: 'Generate detailed reports on attendance, revenue, and student progress to make data-driven decisions.',
-        f6_title: 'Prospects', f6_desc: 'Track leads from first inquiry to enrollment. Never lose a potential student again.',
-        screenshots_title: 'See It in Action',
-        screenshots_subtitle: 'A glimpse of what you get with Straplio',
-        ss_dashboard: 'Dashboard — Overview at a glance',
-        ss_calendar: 'Calendar — Schedule & manage classes',
-        ss_rosters: 'Class Rosters — Track active classes',
-        ss_prospects: 'Prospects — Convert leads to students',
-        ss_classboard: 'Class Board — Tile view of student progress',
-        ss_belt: 'Belt Setup — Tips & progression management',
-        ss_addtip: 'Add New Tip — Quick tip creation',
-        contact_title: 'Get Started Today',
-        contact_subtitle: "Drop us a message and we'll get you set up in minutes",
-        ph_name: 'Your Name', ph_email: 'Your Email', ph_message: 'Tell us about your dojo...',
-        btn_send: 'Send Message →',
-        footer: '© 2026 Straplio. All rights reserved.',
-        msg_success: '✓ Message sent! We\'ll get back to you soon.',
-        msg_error: 'Something went wrong. Please try again.'
-      },
-      pt: {
-        nav_contact: 'Contato',
-        nav_features: 'Recursos',
-        nav_screenshots: 'Capturas de Tela',
-        badge: '🥋 Feito para Escolas de Artes Marciais',
-        hero_title: 'Gerencie Seu Dojo<br><span class="gradient">Como um Profissional</span>',
-        hero_subtitle: 'O CRM completo para gerenciar alunos, aulas, progressão de faixas e pagamentos da sua academia de Karatê e Jiu-Jitsu.',
-        cta_trial: 'Teste Grátis',
-        cta_features: 'Ver Recursos',
-        stat_dojos: 'Dojos no Mundo',
-        stat_students: 'Alunos Gerenciados',
-        stat_uptime: 'Disponibilidade',
-        features_title: 'Tudo o Que Você Precisa',
-        features_subtitle: 'Ferramentas poderosas projetadas especificamente para academias de artes marciais',
-        f1_title: 'Perfis de Alunos', f1_desc: 'Registros completos dos alunos com histórico de faixas, controle de presença e notas de progresso em um só lugar.',
-        f2_title: 'Agendamento Inteligente', f2_desc: 'Agendamento de aulas com arrastar e soltar, detecção automática de conflitos e atribuição de instrutores.',
-        f3_title: 'Progressão de Faixas', f3_desc: 'Acompanhe requisitos de graduação, agende exames e celebre promoções com seus alunos.',
-        f4_title: 'Pronto para Mobile', f4_desc: 'Acesse tudo de qualquer dispositivo. Alunos podem verificar horários e fazer pagamentos em qualquer lugar.',
-        f5_title: 'Relatórios', f5_desc: 'Gere relatórios detalhados sobre presença, receita e progresso dos alunos para tomar decisões baseadas em dados.',
-        f6_title: 'Prospectos', f6_desc: 'Acompanhe leads desde o primeiro contato até a matrícula. Nunca perca um aluno em potencial.',
-        screenshots_title: 'Veja em Ação',
-        screenshots_subtitle: 'Uma prévia do que você recebe com o Straplio',
-        ss_dashboard: 'Painel — Visão geral rápida',
-        ss_calendar: 'Calendário — Agende e gerencie aulas',
-        ss_rosters: 'Lista de Turmas — Acompanhe turmas ativas',
-        ss_prospects: 'Prospectos — Converta leads em alunos',
-        ss_classboard: 'Quadro de Turma — Visão em cards do progresso dos alunos',
-        ss_belt: 'Configuração de Faixas — Gerenciamento de tips e progressão',
-        ss_addtip: 'Adicionar Tip — Criação rápida de tips',
-        contact_title: 'Comece Hoje',
-        contact_subtitle: 'Envie uma mensagem e configuramos tudo em minutos',
-        ph_name: 'Seu Nome', ph_email: 'Seu E-mail', ph_message: 'Conte-nos sobre seu dojo...',
-        btn_send: 'Enviar Mensagem →',
-        footer: '© 2026 Straplio. Todos os direitos reservados.',
-        msg_success: '✓ Mensagem enviada! Retornaremos em breve.',
-        msg_error: 'Algo deu errado. Tente novamente.'
-      }
-    };
+  <form class="contact-form" id="contactForm">
+    <input type="text" name="name" placeholder="Seu Nome" required>
+    <input type="text" name="website" style="position:absolute;left:-9999px;opacity:0" tabindex="-1" autocomplete="off">
+    <input type="email" name="email" placeholder="Seu E-mail" required>
+    <textarea name="message" placeholder="Sua mensagem..." required></textarea>
+    <button type="submit"><span>Enviar Mensagem →</span><span class="spinner"></span></button>
+    <div class="msg" id="formMsg"></div>
+  </form>
 
-    let currentLang = 'en';
+  <div class="footer">
+    © 2026 Straplio — Todos os direitos reservados.
+  </div>
 
-    function setLang(lang) {
-      currentLang = lang;
-      document.documentElement.lang = lang;
-      const strings = i18n[lang];
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        el.innerHTML = strings[el.dataset.i18n];
-      });
-      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-        el.placeholder = strings[el.dataset.i18nPlaceholder];
-      });
-      document.getElementById('flagEn').className = lang === 'en' ? 'active' : 'inactive';
-      document.getElementById('flagPt').className = lang === 'pt' ? 'active' : 'inactive';
-      localStorage.setItem('lang', lang);
+</div>
+
+<script>
+
+  // 30 days from now
+  const launchDate = new Date();
+  launchDate.setDate(launchDate.getDate() + 30);
+
+  function updateCountdown(){
+
+    const now = new Date().getTime();
+    const distance = launchDate - now;
+
+    if (distance <= 0) {
+      window.location.href = '/site.html';
+      return;
     }
 
-    // Toggle
-    document.getElementById('langToggle').addEventListener('click', () => {
-      setLang(currentLang === 'en' ? 'pt' : 'en');
-    });
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    // Detect language: check localStorage first, then geo
-    const saved = localStorage.getItem('lang');
-    if (saved) {
-      setLang(saved);
-    } else {
-      fetch('https://ipapi.co/json/')
-        .then(r => r.json())
-        .then(data => { if (data.country_code === 'BR') setLang('pt'); })
-        .catch(() => {});
+    document.getElementById("days").innerHTML = days;
+    document.getElementById("hours").innerHTML = hours;
+    document.getElementById("minutes").innerHTML = minutes;
+    document.getElementById("seconds").innerHTML = seconds;
+
+  }
+
+  setInterval(updateCountdown,1000);
+  updateCountdown();
+
+</script>
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const msg = document.getElementById('formMsg');
+    const btn = form.querySelector('button');
+    const data = Object.fromEntries(new FormData(form));
+    btn.disabled = true;
+    btn.classList.add('loading');
+    msg.textContent = '';
+    msg.className = 'msg';
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data)
+      });
+      if (!res.ok) throw new Error();
+      msg.textContent = '✓ Mensagem enviada! Retornaremos em breve.';
+      msg.className = 'msg success';
+      form.reset();
+    } catch {
+      msg.textContent = 'Algo deu errado. Tente novamente.';
+      msg.className = 'msg error';
+    } finally {
+      btn.disabled = false;
+      btn.classList.remove('loading');
     }
+  });
+</script>
 
-    // Scroll reveal
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // Form
-    document.getElementById('contactForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const form = e.target;
-      const msg = document.getElementById('formMsg');
-      const btn = form.querySelector('button');
-      const data = Object.fromEntries(new FormData(form));
-      btn.disabled = true;
-      btn.classList.add('loading');
-      msg.textContent = '';
-      msg.className = 'msg';
-      try {
-        const res = await fetch('/api/contact', {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify(data)
-        });
-        if (!res.ok) throw new Error();
-        msg.textContent = i18n[currentLang].msg_success;
-        msg.className = 'msg success';
-        form.reset();
-      } catch {
-        msg.textContent = i18n[currentLang].msg_error;
-        msg.className = 'msg error';
-      } finally {
-        btn.disabled = false;
-        btn.classList.remove('loading');
-      }
-    });
-  </script>
 </body>
 </html>
