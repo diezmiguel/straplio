@@ -1,7 +1,8 @@
 <?php
 header('Content-Type: application/json');
 
-$BREVO_KEY = 'YOUR_BREVO_API_KEY';
+$env = parse_ini_file(__DIR__ . '/../.env');
+$BREVO_KEY = $env['BREVO_KEY'] ?? '';
 $TO_EMAIL = 'miguel.diez@zeid10.com';
 $FROM_EMAIL = 'miguel.diez@zeid10.com';
 
