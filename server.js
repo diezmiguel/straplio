@@ -4,7 +4,7 @@ const nodemailer = require('nodemailer');
 const app = express();
 
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static('.'));
 
 const transporter = nodemailer.createTransport({
   host: 'smtp-relay.brevo.com',
