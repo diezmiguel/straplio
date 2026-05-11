@@ -8,7 +8,7 @@ function logMsg($msg) {
     file_put_contents($logFile, date('[Y-m-d H:i:s] ') . $msg . "\n", FILE_APPEND);
 }
 
-$envPath = __DIR__ . '../.env';
+$envPath = __DIR__ . '/../.env';
 if (!file_exists($envPath)) {
     logMsg("ERROR: .env file not found at $envPath");
     http_response_code(500);
